@@ -1,6 +1,25 @@
 version: '3.1'
 
 services:
+  front:
+    container_name: luciole-front
+    build:
+      context: ./luciole
+      target: dev
+    volumes:
+      - ./luciole:/app
+    ports:
+      - 8000:8000
+
+  back:
+    container_name: luciole-back
+    build:
+      context: ./luciole-back
+      target: dev
+    volumes:
+      - ./luciole-back:/app
+    ports:
+      - 3000:3000
 
   db:
     image: postgres
@@ -10,10 +29,13 @@ services:
     environment:
       POSTGRES_PASSWORD: example
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+
+volumes:
+  db-data:
