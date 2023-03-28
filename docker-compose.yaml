@@ -24,6 +24,7 @@ services:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: example
+      POSTGRES_DB: project
     volumes:
       - db-data:/var/lib/postgresql/data
 
