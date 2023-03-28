@@ -3,7 +3,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <h1 class="text-3xl underline mt-56">
+    Hello world!!!!!!!
+  </h1>
 </template>
