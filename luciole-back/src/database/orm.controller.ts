@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Media } from 'src/media/media.entity';
 import { Post } from 'src/post/post.entity';
 
 @Module({
@@ -11,8 +12,9 @@ import { Post } from 'src/post/post.entity';
       username: 'postgres',
       password: 'example',
       database: 'project',
-      entities: [Post],
+      entities: [Post, Media],
       synchronize: true,
+      autoLoadEntities: true,
     }),
   ],
 })
