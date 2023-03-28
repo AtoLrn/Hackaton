@@ -1,25 +1,21 @@
 version: '3.1'
 
 services:
-  front:
-    container_name: luciole-front
-    build:
-      context: ./luciole
-      target: dev
-    volumes:
-      - ./luciole:/app
-    ports:
-      - 8000:8000
+  #front:
+    #container_name: luciole-front-prod
+    #build:
+      #context: ./luciole
+      #target: prod
+    #ports:
+      #- 80:80
 
-  back:
-    container_name: luciole-back
-    build:
-      context: ./luciole-back
-      target: dev
-    volumes:
-      - ./luciole-back:/app
-    ports:
-      - 3000:3000
+  #back:
+    #container_name: luciole-back-prod
+    #build:
+      #context: ./luciole-back
+      #target: prod
+    #ports:
+      #- 3000:3000
 
   db:
     image: postgres
