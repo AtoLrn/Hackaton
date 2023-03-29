@@ -2,20 +2,7 @@
 
   <div class="sm:p-2 md:p-8 lg:p-16">
     <div class="grid grid-cols-12">
-      <div id="tags-list" class="col-span-12 sm:col-span-8 overflow-x-scroll">
-        <ul class="flex flex-wrap gap-2 p-2">
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 1</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 2</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 3</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 4</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 5</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 6</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 7</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 8</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 9</a></li>
-          <li class="px-2 py-1 bg-gray-200 rounded-sm"><a href="#" class="text-gray-800 hover:text-gray-700">Tag 10</a></li>
-        </ul>
-      </div>
+      <TagsList :tags="tags" />
       <div class="col-span-12 sm:col-span-4 flex items-center justify-center">
         <input type="text" placeholder="Rechercher" class="px-4 py-2 rounded-sm border border-gray-400 focus:outline-none focus:border-transparent">
       </div>
@@ -77,9 +64,63 @@
 <script>
 
 import CardPost from "@/components/CardPost.vue";
+import TagsList from "@/components/TagsList.vue";
 
 export default {
-  components: {CardPost}
+
+  components: {CardPost, TagsList},
+
+  data() {
+    return {
+      tags: [
+        {
+          id: 1,
+          name: "Tous"
+        },
+        {
+          id: 2,
+          name: "Tag 1"
+        },
+        {
+          id: 3,
+          name: "Tag 2"
+        },
+        {
+          id: 4,
+          name: "Tag 3"
+        },
+        {
+          id: 5,
+          name: "Tag 4"
+        },
+        {
+          id: 6,
+          name: "Tag 5"
+        },
+        {
+          id: 7,
+          name: "Tag 6"
+        },
+        {
+          id: 8,
+          name: "Tag 7"
+        },
+        {
+          id: 9,
+          name: "Tag 8"
+        },
+        {
+          id: 10,
+          name: "Tag 9"
+        },
+        {
+          id: 11,
+          name: "Tag 10"
+        },
+      ]
+    }
+  }
+
 }
 
 
