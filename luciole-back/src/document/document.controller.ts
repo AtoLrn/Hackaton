@@ -15,7 +15,7 @@ export class TagController {
   @Post()
   @UseInterceptors(
     FileInterceptor('file', {
-      dest: './uploads/',
+      dest: './uploads/document',
     }),
   )
   async postDocument(@UploadedFile() file: Express.Multer.File) {

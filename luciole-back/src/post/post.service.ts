@@ -13,28 +13,22 @@ export class PostService {
     private mediaRepository: Repository<Media>,
   ) {}
 
-  getPosts(): string {
-    const today = new Date();
-    return 'test';
-  }
-
   async addPosts(post: any, files: any): Promise<string> {
-    try{
-        const newPost = await this.postsRepository.save(post)
-        
-        files.map(async file => {
-            const newMedia = await this.mediaRepository.save({
-                path: file.path,
-                post: newPost
-            })
+    try {
+      const newPost = await this.postsRepository.save(post);
 
-            return newMedia
-        })
+      files.map(async (file) => {
+        const newMedia = await this.mediaRepository.save({
+          path: file.path,
+          post: newPost,
+        });
 
-        console.log(files)
+        return newMedia;
+      });
+
+      console.log(files);
     } finally {
-        return 'hey'
+      return 'hey';
     }
   }
-
 }
