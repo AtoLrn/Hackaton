@@ -8,6 +8,7 @@ import { SecurityModule } from './security/security.module';
 import { TagModule } from './tag/tag.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { GrouptagModule } from './grouptag/grouptag.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { join } from 'path';
     TagModule,
     SecurityModule,
     DocumentModule,
+    GrouptagModule,
     ServeStaticModule.forRoot({
         rootPath: join(__dirname, '..', 'uploads'),
         serveRoot: '/uploads/'
