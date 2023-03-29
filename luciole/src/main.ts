@@ -6,11 +6,6 @@ import { BrowserTracing } from "@sentry/tracing";
 import App from './App.vue'
 import router from './router'
 
-<<<<<<< HEAD
-import './assets/styles.scss'
-
-=======
->>>>>>> 1a79f87 (j'ai rajouté la possibilité de créer des postes c'est sympa vous trouvez pas lol)
 const app = createApp(App)
 
 Sentry.init({
