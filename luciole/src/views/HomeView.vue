@@ -2,5 +2,6 @@
 </script>
 
 <template>
+  <h1>
     Hello world!!!!!!!
 </template>
