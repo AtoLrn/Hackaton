@@ -5,8 +5,6 @@
     import IconNotification from './icons/IconNotification.vue';
     import IconSettings from './icons/IconSettings.vue';
     import ToggleDarkMode from './ToggleDarkMode.vue';
-
-    import '../assets/sidebar.scss';
 </script>
 
 <template>  
@@ -68,10 +66,10 @@
 <style lang="sass">
 .sidebar
     width: 4rem
-    transition: all 0.3s ease-in-out
+    transition: width 0.2s ease-in-out
 .sidebar:hover
     width: 16rem
-    transition: all 0.3s ease-in-out
+    transition: width 0.3s ease-in-out
     .item
         display: block
 </style>
