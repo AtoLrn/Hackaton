@@ -16,6 +16,11 @@ import { diskStorage } from 'multer';
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
+  @Get()
+  async getPost(): Promise<any> {
+    return await this.postService.getAllPost();
+  }
+
   @Post()
   @UseInterceptors(
     FilesInterceptor('files', 10, {
@@ -28,7 +33,7 @@ export class PostController {
       }),
     }),
   )
-  addPost(@UploadedFiles() files, @Body() body: any): Promise<string> {
+  async addPost(@UploadedFiles() files, @Body() body: any): Promise<string> {
     const { title, content, type } = body;
 
     const toPublishAt = new Date(body.toPublishAt);
@@ -40,6 +45,6 @@ export class PostController {
       type,
     };
 
-    return this.postService.addPosts(newPost, files);
+    return await this.postService.addPosts(newPost, files);
   }
 }

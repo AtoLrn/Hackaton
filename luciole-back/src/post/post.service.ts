@@ -13,7 +13,17 @@ export class PostService {
     private mediaRepository: Repository<Media>,
   ) {}
 
-  async addPosts(post: any, files: any): Promise<string> {
+  async getAllPost(): Promise<any> {
+    try{
+        const posts = await this.postsRepository.find({relations: {medias: true}})
+
+        return posts
+    } catch (error) {
+        return error
+    }
+  }
+
+  async addPosts(post: any, files: any): Promise<any> {
     try {
       const newPost = await this.postsRepository.save(post);
 
@@ -26,9 +36,12 @@ export class PostService {
         return newMedia;
       });
 
-      console.log(files);
-    } finally {
-      return 'hey';
+      return {
+        ...newPost,
+        files
+      }
+    } catch (error) {
+      return error;
     }
   }
 }
