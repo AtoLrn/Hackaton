@@ -16,6 +16,7 @@
   "dependencies": {
     "@sentry/tracing": "^7.45.0",
     "@sentry/vue": "^7.45.0",
+    "@vueuse/core": "^9.13.0",
     "node-sass": "^8.0.0",
     "pinia": "^2.0.32",
     "sass": "^1.60.0",

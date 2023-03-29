@@ -6,6 +6,8 @@ import { BrowserTracing } from "@sentry/tracing";
 import App from './App.vue'
 import router from './router'
 
+import './assets/styles.scss'
+
 const app = createApp(App)
 
 Sentry.init({
