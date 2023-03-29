@@ -20,14 +20,16 @@
           <form class="w-full">
             <div class="mb-4">
               <label for="email" class="text-xs">Adresse e-mail</label>
-              <input type="email" id="email" name="email" class="border border-slate-200 rounded p-2 w-full" required>
+              <input type="email" id="email" name="email" class="border border-slate-200 rounded p-2 w-full">
             </div>
             <div class="mb-4">
               <label for="password" class="text-xs">Mot de passe</label>
-              <input type="password" id="password" name="password" class="border-b p-2 w-full" required>
+              <input type="password" id="password" name="password" class="border-b p-2 w-full">
             </div>
             <div class="flex justify-start items-center">
-              <button type="submit" class="text-white font-medium py-2 px-4 rounded-md">Connexion</button>
+              <RouterLink to="/information-list">
+                <button type="submit" class="text-white font-medium py-2 px-4 rounded-md">Connexion</button>
+              </RouterLink>
             </div>
           </form>
         </div>

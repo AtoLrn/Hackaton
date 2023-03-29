@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav class="flex justify-between px-16 items-center">
         <div class="w-20 flex items-center">
           <RouterLink to="/">
-            <img src="./assets/img/jaji-logo.png" alt="Logo Jaji" class="h-25">
+            <img src="./assets/img/jaji_logo.svg" alt="Logo Jaji" class="h-25">
           </RouterLink>
         </div>
         <ul class="flex justify-evenly w-60">
@@ -31,7 +31,6 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="w-20">&nbsp;</div>
       </nav>
   </header>
-
 
   <div class="main">
     <RouterView />
