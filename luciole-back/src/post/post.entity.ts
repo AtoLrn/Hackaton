@@ -1,5 +1,5 @@
 import { Media } from 'src/media/media.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn } from 'typeorm';
 
 @Entity()
 export class Post {
@@ -12,9 +12,15 @@ export class Post {
   @Column()
   content: string;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @Column({ type: 'timestamptz' })
+  toPublishAt: Date;
+
   @Column({ enum: ['post', 'link', 'slide', 'video'] })
   type: string;
 
-  @OneToMany(() => Media, (media: Media) => media.postId)
+  @OneToMany(() => Media, (media: Media) => media.post)
   medias: Media[];
 }

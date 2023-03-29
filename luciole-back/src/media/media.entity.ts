@@ -1,12 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Post } from 'src/post/post.entity'
 
 @Entity()
 export class Media {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  postId: number;
+  @ManyToOne(() => Post, (post: Post) => post.medias)
+  post: number;
 
   @Column()
   path: string;
