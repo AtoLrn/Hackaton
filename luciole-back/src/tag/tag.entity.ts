@@ -14,6 +14,9 @@ export class Tag {
   @IsNotEmpty()
   startDate: Date;
 
+  @Column({ default: 1 })
+  priority: number;
+
   @Column({ nullable: true })
   endDate: Date;
 

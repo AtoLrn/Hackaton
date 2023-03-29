@@ -1,5 +1,13 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { User } from 'src/user/user.entity';
+import { JwtGuard } from './local.auth';
 import { SecurityService } from './security.service';
 
 @Controller('/user')
