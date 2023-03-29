@@ -4,10 +4,12 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
 
-  <header>
-      <nav class="flex justify-between px-16 py-4">
+  <header id="test" v-if="$route.path !== '/login'">
+      <nav class="flex justify-between px-16 items-center">
         <div class="w-20 flex items-center">
-          <RouterLink to="/">JAJI LOGO</RouterLink>
+          <RouterLink to="/">
+            <img src="./assets/img/jaji-logo.png" alt="Logo Jaji" class="h-25">
+          </RouterLink>
         </div>
         <ul class="flex justify-evenly w-60">
             <li class="mr-3">
@@ -31,9 +33,13 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
 
 
-  <div class="main p-16">
+  <div class="main">
     <RouterView />
   </div>
+
+  <header id="test2" style="background-color: red;">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, nesciunt, quaerat! Consequatur delectus dignissimos minus nulla recusandae rem unde. Aliquid deserunt ducimus nostrum officia perferendis, repellendus rerum sequi vel voluptatem!
+  </header>
 
 </template>
 
@@ -42,6 +48,20 @@ import { RouterLink, RouterView } from 'vue-router'
   header {
     color: black;
     background-color: var(--color-background-soft);
+  }
+
+  #test2 {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    #test {
+      display: none;
+    }
+
+    #test2 {
+      display: block;
+    }
   }
 
   main {
