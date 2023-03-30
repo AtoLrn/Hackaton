@@ -10,17 +10,22 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/login',
+      path: '/connexion',
       name: 'login',
       component: () => import('../views/LoginView.vue')
     },
     {
-      path: '/information-list',
+      path: '/actualites',
       name: 'information-list',
       component: () => import('../views/InformationListView.vue')
     },
     {
-      path: '/profile',
+      path: '/actualites/:id',
+      name: 'info',
+      component: () => import('../views/InformationView.vue')
+    },
+    {
+      path: '/profil',
       name: 'profile',
       component: () => import('../views/ProfileView.vue')
     },

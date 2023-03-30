@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
 
-  <header id="test" v-if="$route.path !== '/login'">
+  <header id="test" v-if="$route.path !== '/connexion'">
       <nav class="flex justify-between px-16 items-center">
         <div class="w-20 flex items-center">
           <RouterLink to="/">
@@ -13,7 +13,7 @@ import { RouterLink, RouterView } from 'vue-router'
         </div>
         <ul class="flex justify-evenly w-60">
             <li class="mr-3">
-              <RouterLink to="/information-list" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Informations</RouterLink>
+              <RouterLink to="/actualites" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Informations</RouterLink>
             </li>
             <li class="mr-3">
               <a class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4" href="#">Santé</a>
@@ -25,7 +25,7 @@ import { RouterLink, RouterView } from 'vue-router'
               <RouterLink to="/profile" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Profil</RouterLink>
             </li>
           <li class="mr-3">
-              <RouterLink to="/login" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Connexion</RouterLink>
+              <RouterLink to="/connexion" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Connexion</RouterLink>
           </li>
           </ul>
         <div class="w-20">&nbsp;</div>
