@@ -1,6 +1,6 @@
 <template>
-  <div class="greetings">
-  <h1>modifier un Post</h1>
+  <div class="create">
+  <h1>créer un Post</h1>
   <form @submit.prevent="submitForm">
     <label for="title">Titre :</label>
     <input type="text" id="title" v-model="form.title" required>
@@ -28,13 +28,10 @@
     <label for="video">video</label>
     <br>
 
+
     <button type="submit">Soumettre</button>
   </form>
 
-    <li v-for="media in form.medias">
-        <p>Lien du media : {{ media.path }}</p>
-        <button @click="removeMedia(media.id)">Supprimer</button>
-    </li>
   </div>
 </template>
 
@@ -45,44 +42,30 @@ export default {
       form: {
         title: '',
         content: '',
-        toPublishAt: '',
+        toPublishAt: new Date(),
         files: null,
         type: 'post',
-        medias: [],
       },
     };
   },
   beforeMount() {
-    const id = this.$route.params.id
-
-    fetch(`http://localhost:3000/post/${id}`)
+    fetch('http://localhost:3000/post')
     .then(res => res.json())
     .then(data => {
-        const {title, content, type, toPublishAt, medias} = data
+        console.log(data)
+        data.forEach(post => {
+            const { title, content, createdAt, type, medias } = post
 
-        this.form.title = title
-        this.form.content = content
-        this.form.type = type
-
-        const dateBuffer = new Date(toPublishAt)
-        const publishDate = dateBuffer.toISOString().substring(0, 10)
-        this.form.toPublishAt = publishDate
-        this.form.medias = medias
+            // Url pour pouvoir accéder aux images
+            medias.map(media => media.path = "http://localhost:3000/" + media.path)
+            console.log(medias)
+        })
     })
   },
   methods: {
     handleFileChange(event) {
       this.form.files = event.target.files;
     },
-    async removeMedia(id) {
-        fetch(`http://localhost:3000/media/${id}`, {
-            method: "DELETE"
-        })
-        .then(_ => {
-            this.form.medias = this.form.medias.filter(media => media.id != id)
-        })
-    },
-    //envois du formulaire pour créer un post
     async submitForm() {
       const formData = new FormData();
       formData.append('title', this.form.title);
@@ -90,23 +73,24 @@ export default {
       formData.append('toPublishAt', this.form.toPublishAt);
       formData.append('type', this.form.type);
 
-      if(this.form.files){
-          for(let i=0; i < this.form.files.length; i++) {
-            formData.append(`files`, this.form.files[i])
-          }
+      if(this.form.files) {
+        for(let i=0; i < this.form.files.length; i++) {
+          formData.append(`files`, this.form.files[i])
+        }
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/post/${this.$route.params.id}`, {
-          method: 'PUT',
+        const response = await fetch('http://localhost:3000/post', {
+          method: 'POST',
           body: formData
         });
 
-        const data = await response.json()
+        alert('Post crée')
 
-        this.form.medias = data.files
-        console.log(data.files)
-        alert('Post updated !')
+        this.form.title = ''
+        this.form.content = ''
+        const today = new Date()
+        this.form.toPublishAt = today.toISOString().substring(0, 10)
       } catch (error) {
         console.error(error);
       }

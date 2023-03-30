@@ -45,7 +45,7 @@ const router = createRouter({
       component: () => import('../views/ProfileView.vue')
     },
     {
-      path: '/post/:id',
+      path: '/backoffice/post/:id',
       name: 'post',
       component: () => import('../views/PostView.vue')
     },
@@ -53,6 +53,16 @@ const router = createRouter({
       path: '/backoffice',
       name: 'backoffice-main',
       component: () => import('../views/BackofficeView.vue')
+    },
+    {
+      path: '/backoffice/post',
+      name: 'backoffice-posts',
+      component: () => import('../views/BackofficePostView.vue')
+    },
+    {
+      path: '/backoffice/post/create',
+      name: 'backoffice-posts-create',
+      component: () => import('../views/CreatePostView.vue')
     },
   ]
 })

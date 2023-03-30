@@ -148,18 +148,19 @@ export class PostService {
     post[0].toPublishAt = updatedPost.toPublishAt
     post[0].type = updatedPost.type
 
-    files.forEach(async (file) => {
+    await files.forEach(async (file) => {
         await this.mediaRepository.save({
             path: file.path,
             post: post[0].id
         })
     })
 
-    const postUpdated = await this.postsRepository.update(id, post[0]);
+    await this.postsRepository.update(id, post[0]);
 
     const updatedFiles = await this.mediaRepository.find({
         where: {post: post[0].id}
     })
+    console.log(updatedFiles)
 
     return {
         post: post[0],

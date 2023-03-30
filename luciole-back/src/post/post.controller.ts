@@ -72,7 +72,7 @@ export class PostController {
       }),
     }),
   )
-  updatePost(@UploadedFiles() files, @Body() body: any, @Param('id') id) {
+  async updatePost(@UploadedFiles() files, @Body() body: any, @Param('id') id) {
     const { title, content, type } = body;
 
     const toPublishAt = new Date(body.toPublishAt ?? null);
@@ -84,7 +84,7 @@ export class PostController {
       type,
     };
 
-    return this.postService.updatePost(newPost, files, id);
+    return await this.postService.updatePost(newPost, files, id);
   }
 
   @Delete('/:id')
