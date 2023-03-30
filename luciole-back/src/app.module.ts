@@ -10,12 +10,14 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { GrouptagModule } from './grouptag/grouptag.module';
 import { ConfigModule } from '@nestjs/config';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
     PostModule,
     DatabaseModule,
     TagModule,
+    MediaModule,
     SecurityModule,
     DocumentModule,
     GrouptagModule,

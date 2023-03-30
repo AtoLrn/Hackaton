@@ -10,8 +10,8 @@ export class MediaService {
     private mediaRepository: Repository<Media>,
   ) {}
 
-  getPosts(): string {
-    const today = new Date();
+  deleteMedia(id): string {
+    console.log(id)
     return 'test';
   }
 }

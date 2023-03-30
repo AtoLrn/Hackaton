@@ -13,6 +13,7 @@ import {
   StartTranscriptionJobCommand,
   TranscribeClient,
 } from '@aws-sdk/client-transcribe';
+import * as fs from 'fs';
 
 @Injectable()
 export class PostService {
@@ -135,6 +136,45 @@ export class PostService {
     }
 
     return newPost;
+  }
+
+  async getPost(id) {
+    const post = await this.postsRepository.find({
+        where: {id: id},
+        relations: {medias: true}
+    });
+
+    return post[0]
+  }
+
+  async updatePost(id) {
+    const post = await this.postsRepository.find({
+        where: {id: id},
+        relations: {medias: true}
+    });
+    return 'hey'
+  }
+
+  async deletePost(id): Promise<any> {
+    const post = await this.postsRepository.find({
+        where: {id: id},
+        relations: {medias: true}
+    });
+
+    post[0].medias.forEach(media => {
+        const filePath = `${__dirname}/../../${media.path}`
+        fs.exists(filePath, exist => {
+            if(exist) {
+                fs.unlink(filePath, err => {
+                    if (err) throw err
+                })
+            }
+        })
+    })
+
+    const deletedPost = await this.postsRepository.delete(id)
+
+    return "Successfully deleted"
   }
 
   private calcTimeModifier(timeDiff: number) {

@@ -2,8 +2,11 @@ import { PostService } from './post.service';
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
   Post,
+  Put,
   Request,
   UploadedFiles,
   UseGuards,
@@ -23,6 +26,11 @@ export class PostController {
   @Get()
   async getPost(): Promise<any> {
     return await this.postService.getAllPost();
+  }
+
+  @Get('/:id')
+  getPostById(@Param('id') id) {
+    return this.postService.getPost(id)
   }
 
   @Post()
@@ -50,6 +58,16 @@ export class PostController {
     };
 
     return this.postService.addPosts(newPost, files);
+  }
+
+  @Put('/:id')
+  updatePost(@Param('id') id, @Body() body: any) {
+    return this.postService.updatePost(id)
+  }
+
+  @Delete('/:id')
+  deletePost(@Param('id') id) {
+    return this.postService.deletePost(id)
   }
 
   @Get('/targetted')
