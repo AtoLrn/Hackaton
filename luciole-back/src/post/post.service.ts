@@ -63,7 +63,7 @@ export class PostService {
   }
 
   private calcTimeModifier(timeDiff: number) {
-    return (365 - timeDiff) / 365;
+    return Math.exp((365 - timeDiff) / 365 + 1);
   }
 
   async getTargettedPost(user: User): Promise<Post[]> {
@@ -101,7 +101,11 @@ export class PostService {
 
     const totalTags = (tags: Tag[]) => {
       return tags.reduce((acc, val) => {
-        if (!(val.name in tagsWeigth)) return acc;
+        if (!(val.name in tagsWeigth)) return acc + 0.5;
+
+        if (val.startDate > now || (val.endDate && val.endDate < now))
+          return acc;
+
         return acc + tagsWeigth[val.name] * val.priority;
       }, 0);
     };
