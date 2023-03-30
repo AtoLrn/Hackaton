@@ -61,8 +61,30 @@ export class PostController {
   }
 
   @Put('/:id')
-  updatePost(@Param('id') id, @Body() body: any) {
-    return this.postService.updatePost(id)
+  @UseInterceptors(
+    FilesInterceptor('files', 10, {
+      storage: diskStorage({
+        destination: './uploads/post',
+        filename: (req, file, cb) => {
+          const fileName = uuidv4();
+          cb(null, `${fileName}${extname(file.originalname)}`);
+        },
+      }),
+    }),
+  )
+  updatePost(@UploadedFiles() files, @Body() body: any, @Param('id') id) {
+    const { title, content, type } = body;
+
+    const toPublishAt = new Date(body.toPublishAt ?? null);
+
+    const newPost = {
+      title,
+      content,
+      toPublishAt,
+      type,
+    };
+
+    return this.postService.updatePost(newPost, files, id);
   }
 
   @Delete('/:id')

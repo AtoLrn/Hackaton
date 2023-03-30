@@ -56,8 +56,9 @@ export default {
     };
   },
   beforeMount() {
-    // récupérer tous les posts qui intéressent l'utilisateur
-    fetch('http://localhost:3000/post/3')
+    const id = this.$route.params.id
+
+    fetch(`http://localhost:3000/post/${id}`)
     .then(res => res.json())
     .then(data => {
         const {title, content, type, toPublishAt, medias} = data
@@ -70,7 +71,6 @@ export default {
         const publishDate = dateBuffer.toISOString().substring(0, 10)
         this.form.toPublishAt = publishDate
         this.form.medias = medias
-
     })
   },
   methods: {
@@ -78,10 +78,11 @@ export default {
       this.form.files = event.target.files;
     },
     async removeMedia(id) {
-        fetch(`http://localhost:3000/media/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
+        fetch(`http://localhost:3000/media/${id}`, {
+            method: "DELETE"
+        })
+        .then(_ => {
+            this.form.medias = this.form.medias.filter(media => media.id != id)
         })
     },
     //envois du formulaire pour créer un post
@@ -92,17 +93,22 @@ export default {
       formData.append('toPublishAt', this.form.toPublishAt);
       formData.append('type', this.form.type);
 
-      for(let i=0; i < this.form.files.length; i++) {
-        formData.append(`files`, this.form.files[i])
+      if(this.form.files){
+          for(let i=0; i < this.form.files.length; i++) {
+            formData.append(`files`, this.form.files[i])
+          }
       }
 
       try {
-        const response = await fetch('http://localhost:3000/post', {
-          method: 'POST',
+        const response = await fetch(`http://localhost:3000/post/${this.$route.params.id}`, {
+          method: 'PUT',
           body: formData
         });
 
-        console.log(response)
+        const data = await response.json()
+
+        this.form.medias = data.files
+        alert('Post updated !')
       } catch (error) {
         console.error(error);
       }

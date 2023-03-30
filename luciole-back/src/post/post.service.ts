@@ -138,6 +138,35 @@ export class PostService {
     return newPost;
   }
 
+  async updatePost(updatedPost: any, files: any, id: any) {
+    const post = await this.postsRepository.find({
+        where: {id: id},
+    });
+
+    post[0].title = updatedPost.title
+    post[0].content = updatedPost.content
+    post[0].toPublishAt = updatedPost.toPublishAt
+    post[0].type = updatedPost.type
+
+    files.forEach(async (file) => {
+        await this.mediaRepository.save({
+            path: file.path,
+            post: post[0].id
+        })
+    })
+
+    const postUpdated = await this.postsRepository.update(id, post[0]);
+
+    const updatedFiles = await this.mediaRepository.find({
+        where: {post: post[0].id}
+    })
+
+    return {
+        post: post[0],
+        files: updatedFiles
+    };
+  }
+
   async getPost(id) {
     const post = await this.postsRepository.find({
         where: {id: id},
@@ -145,14 +174,6 @@ export class PostService {
     });
 
     return post[0]
-  }
-
-  async updatePost(id) {
-    const post = await this.postsRepository.find({
-        where: {id: id},
-        relations: {medias: true}
-    });
-    return 'hey'
   }
 
   async deletePost(id): Promise<any> {

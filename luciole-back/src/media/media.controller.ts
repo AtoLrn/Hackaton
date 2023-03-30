@@ -1,12 +1,12 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { Controller, Delete, Param } from '@nestjs/common';
 import { MediaService } from './media.service';
 
 @Controller('/media')
 export class MediaController {
   constructor(private readonly postService: MediaService) {}
 
-  @Get('/:id')
-  deleteMedia(@Param('id') id): string {
+  @Delete('/:id')
+  deleteMedia(@Param('id') id) {
     return this.postService.deleteMedia(id);
   }
 }
