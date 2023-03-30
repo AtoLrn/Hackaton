@@ -60,7 +60,7 @@ export default {
       tags: [
         {
           id: 1,
-          name: "Tous"
+          name: "Pour vous"
         },
         {
           id: 2,
