@@ -15,6 +15,16 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
+      path: '/couverture-sante',
+      name: 'health-insurance',
+      component: () => import('../views/HealthInsuranceView.vue')
+    },
+    {
+      path: '/soins',
+      name: 'care',
+      component: () => import('../views/CareView.vue')
+    },
+    {
       path: '/actualites',
       name: 'information-list',
       component: () => import('../views/InformationListView.vue')
@@ -23,6 +33,11 @@ const router = createRouter({
       path: '/actualites/:id',
       name: 'info',
       component: () => import('../views/InformationView.vue')
+    },
+    {
+      path: '/parametres',
+      name: 'settings',
+      component: () => import('../views/SettingsView.vue')
     },
     {
       path: '/profil',
