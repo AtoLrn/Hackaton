@@ -1,6 +1,5 @@
 <template>
 
-
   <div class="h-screen flex">
     <div class="w-2/3 flex justify-center items-center">
       <img src="src/assets/img/scene_employeur.svg" alt="Illustration page de connexion">
@@ -39,7 +38,6 @@
 </template>
 
 <style scoped>
-
   button {
     color: #355070 !important;
     background-color: #FFE7AA !important;

@@ -1,70 +1,37 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
 
-  <header id="test" v-if="$route.path !== '/connexion'">
-      <nav class="flex justify-between px-16 items-center">
-        <div class="w-20 flex items-center">
-          <RouterLink to="/">
-            <img src="./assets/img/jaji_logo.svg" alt="Logo Jaji" class="h-25">
-          </RouterLink>
-        </div>
-        <ul class="flex justify-evenly w-60">
-            <li class="mr-3">
-              <RouterLink to="/actualites" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Informations</RouterLink>
-            </li>
-            <li class="mr-3">
-              <a class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4" href="#">Santé</a>
-            </li>
-            <li class="mr-3">
-              <a class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4" href="#">Assurance</a>
-            </li>
-            <li class="mr-3">
-              <RouterLink to="/profile" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Profil</RouterLink>
-            </li>
-          <li class="mr-3">
-              <RouterLink to="/connexion" class="inline-block border border-white rounded hover:border-gray-200 text-black hover:bg-white py-2 px-4">Connexion</RouterLink>
-          </li>
-          </ul>
-        <div class="w-20">&nbsp;</div>
-      </nav>
+  <header class="text-black dark:text-white bg-white dark:bg-gray-800">
+    <Navbar />
   </header>
 
-  <div class="main">
+
+  <div class="main p-16">
     <RouterView />
   </div>
-
-  <header id="test2" style="background-color: red;">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, nesciunt, quaerat! Consequatur delectus dignissimos minus nulla recusandae rem unde. Aliquid deserunt ducimus nostrum officia perferendis, repellendus rerum sequi vel voluptatem!
-  </header>
 
 </template>
 
 <style scoped>
-
   header {
     color: black;
     background-color: var(--color-background-soft);
   }
-
   #test2 {
     display: none;
   }
-
   @media (max-width: 768px) {
     #test {
       display: none;
     }
-
     #test2 {
       display: block;
     }
   }
-
   main {
     color: black;
   }
-
 </style>
