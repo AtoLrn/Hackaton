@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Post } from 'src/post/post.entity'
+import { Post } from 'src/post/post.entity';
 
 @Entity()
 export class Media {

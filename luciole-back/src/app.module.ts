@@ -9,6 +9,7 @@ import { TagModule } from './tag/tag.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { GrouptagModule } from './grouptag/grouptag.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -19,9 +20,10 @@ import { GrouptagModule } from './grouptag/grouptag.module';
     DocumentModule,
     GrouptagModule,
     ServeStaticModule.forRoot({
-        rootPath: join(__dirname, '..', 'uploads'),
-        serveRoot: '/uploads/'
-    })
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads/',
+    }),
+    ConfigModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],

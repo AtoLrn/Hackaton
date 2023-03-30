@@ -6,6 +6,13 @@ import { Post } from './post.entity';
 import { User } from 'src/user/user.entity';
 import { Tag } from 'src/tag/tag.entity';
 import { Document } from 'src/document/document.entity';
+import { S3 } from 'aws-sdk';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import {
+  StartTranscriptionJobCommand,
+  TranscribeClient,
+} from '@aws-sdk/client-transcribe';
 
 @Injectable()
 export class PostService {
@@ -34,30 +41,98 @@ export class PostService {
     }
   }
 
-  async addPosts(post: any, files: any): Promise<Post> {
-    const tags = await this.tagRepository.find();
-
-    const { content } = post;
-
-    const documentTags = tags.reduce<Tag[]>((acc, val) => {
+  private getPostTag = (content: string, tags: Tag[]): Tag[] => {
+    return tags.reduce<Tag[]>((acc, val) => {
       if (content.toLocaleLowerCase().includes(val.name.toLocaleLowerCase())) {
         acc.push(val);
       }
       return acc;
     }, []);
+  };
+  //TODO
+  async addPosts(post: any, files: any): Promise<Post> {
+    const transcribeClient = new TranscribeClient({
+      region: process.env.REGION,
+      credentials: {
+        accessKeyId: process.env.accessKeyId,
+        secretAccessKey: process.env.secretAccessKey,
+      },
+    });
+
+    const s3 = new S3({
+      accessKeyId: process.env.accessKeyId,
+      secretAccessKey: process.env.secretAccessKey,
+    });
+
+    const tags = await this.tagRepository.find();
+
+    const { content, type } = post;
+
+    const documentTags = this.getPostTag(content, tags);
 
     post.tags = documentTags;
 
     const newPost = await this.postsRepository.save(post);
 
-    files.map(async (file) => {
-      const newMedia = await this.mediaRepository.save({
+    files.forEach(async (file) => {
+      await this.mediaRepository.save({
         path: file.path,
         post: newPost,
       });
-
-      return newMedia;
     });
+
+    if (type === 'video') {
+      const path = join(process.cwd(), files[0].path);
+      const fileBuffer = readFileSync(path);
+      const params = {
+        Bucket: 'hackaton-esgi',
+        Key: `${files[0].filename}`,
+        Body: fileBuffer,
+      };
+      const prom = new Promise((res, rej) => {
+        s3.upload(params, (err, data) => {
+          if (err) {
+            rej(err);
+          }
+          res(data.Location);
+        });
+      });
+      const data = await prom;
+
+      const paramsTranscribe = {
+        TranscriptionJobName: files[0].filename,
+        LanguageCode: 'fr-FR',
+        Media: {
+          MediaFileUri: data as string,
+        },
+        OutputBucketName: 'hackaton-esgi',
+      };
+
+      await transcribeClient.send(
+        new StartTranscriptionJobCommand(paramsTranscribe),
+      );
+
+      setTimeout(async () => {
+        const request = {
+          Bucket: 'hackaton-esgi',
+          Key: `${files[0].filename}.json`,
+        };
+
+        s3.getObject(request, (_, data) => {
+          if (data.Body) {
+            const documentTags = this.getPostTag(
+              JSON.parse(data.Body.toString()).results.transcripts[0]
+                .transcript,
+              tags,
+            );
+
+            this.postsRepository.save({ ...newPost, tags: documentTags });
+          } else {
+            console.error('Didnt found the document....');
+          }
+        });
+      }, 60000);
+    }
 
     return newPost;
   }
