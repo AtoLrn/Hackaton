@@ -24,31 +24,31 @@
         <hr class="my-4 border-gray-200 dark:border-gray-700" />
       <ul class="space-y-2 font-medium">
          <li>
-            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconHome />
                <span class="flex-1 ml-3 whitespace-nowrap hidden item">Accueil</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconCover />
                 <span class="flex-1 ml-3 whitespace-nowrap hidden item">Couverture</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconHeart />
                 <span class="flex-1 ml-3 whitespace-nowrap hidden item">Soins</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/actualites" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconNotification />
                 <span class="flex-1 ml-3 whitespace-nowrap hidden item">Actualités</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconSettings />
                 <span class="flex-1 ml-3 whitespace-nowrap hidden item">Paramètres</span>
             </RouterLink>
@@ -60,13 +60,13 @@
             <ToggleDarkMode />
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/profil" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <IconProfil />
                <span class="flex-1 ml-3 whitespace-nowrap hidden item">Profil</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/connexion" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconLogout />
                <span class="flex-1 ml-3 whitespace-nowrap hidden item">Déconnexion</span>
             </RouterLink>
@@ -79,31 +79,31 @@
 <nav class="fixed bottom-0 sm:hidden w-screen bg-white border-t border-gray-200 z-40 rounded-t-3xl flex justify-center align-middle">
       <ul class="font-medium flex">
          <li>
-            <RouterLink to="/information-list" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconHome />
                <span class="whitespace-nowrap text-xs text-gray-600">Accueil</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconCover />
                 <span class="whitespace-nowrap text-xs text-gray-600">Couverture</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconHeart />
                 <span class="whitespace-nowrap text-xs text-gray-600">Soins</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/actualites" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconNotification />
                 <span class="whitespace-nowrap text-xs text-gray-600">Actualités</span>
             </RouterLink>
          </li>
          <li>
-            <RouterLink to="/information-list" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <RouterLink to="/connexion" class="flex flex-col my-2 justify-center items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconProfil />
                 <span class="whitespace-nowrap text-xs text-gray-600">Profil</span>
             </RouterLink>
