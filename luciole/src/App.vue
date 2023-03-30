@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Navbar from './components/Navbar.vue'
+import AppLayout from './components/Layout.vue'
 </script>
 
 <template>
@@ -9,9 +10,11 @@ import Navbar from './components/Navbar.vue'
   </header>
 
 
-  <div class="main px-16 py-4">
-    <RouterView />
-  </div>
+  <AppLayout>
+    <div class="main px-16 py-4">
+      <RouterView />
+    </div>
+  </AppLayout>
 
 </template>
 
