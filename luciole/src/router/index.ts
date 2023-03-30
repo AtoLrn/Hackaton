@@ -49,6 +49,11 @@ const router = createRouter({
       name: 'post',
       component: () => import('../views/PostView.vue')
     },
+    {
+      path: '/backoffice',
+      name: 'backoffice-main',
+      component: () => import('../views/BackofficeView.vue')
+    },
   ]
 })
 
