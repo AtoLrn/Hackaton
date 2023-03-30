@@ -7,12 +7,13 @@
     import IconProfil from './icons/IconProfil.vue';
     import Logo from './icons/Logo.vue';
     import LogoFull from './icons/LogoFull.vue';
+    import IconLogout from './icons/IconLogout.vue';
     import ToggleDarkMode from './ToggleDarkMode.vue';
 </script>
 
 <template>
 
-<aside id="logo-sidebar" class="hidden top-0 left-0 z-40 h-screen sidebar sm:block fixed" aria-label="Sidebar">
+<aside id="logo-sidebar" class="hidden top-0 left-0 z-40 h-screen sidebar sm:block fixed border-r-2 shadow-xl" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <RouterLink to="/" class="flex items-center pl-2.5 mb-5 logo">
             <Logo />
@@ -52,8 +53,23 @@
                 <span class="flex-1 ml-3 whitespace-nowrap hidden item">Paramètres</span>
             </RouterLink>
          </li>
+      </ul>
+      <!-- Icons on bottom -->
+      <ul class="absolute bottom-0 z-40">
          <li class="hidden item">
             <ToggleDarkMode />
+         </li>
+         <li>
+            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+               <IconProfil />
+               <span class="flex-1 ml-3 whitespace-nowrap hidden item">Profil</span>
+            </RouterLink>
+         </li>
+         <li>
+            <RouterLink to="/information-list" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <IconLogout />
+               <span class="flex-1 ml-3 whitespace-nowrap hidden item">Déconnexion</span>
+            </RouterLink>
          </li>
       </ul>
    </div>
