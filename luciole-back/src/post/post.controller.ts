@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Request,
   UploadedFiles,
   UseGuards,
@@ -26,6 +27,11 @@ export class PostController {
   @Get()
   async getPost(): Promise<any> {
     return await this.postService.getAllPost();
+  }
+
+  @Get('/search')
+  getPostBySearch(@Query('title') title) {
+    return this.postService.searchPost(title)
   }
 
   @Get('/:id')

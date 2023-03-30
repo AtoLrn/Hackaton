@@ -42,6 +42,20 @@ export class PostService {
     }
   }
 
+  async searchPost(title): Promise<any> {
+    try {
+      const posts = await this.postsRepository.find({
+        relations: { medias: true },
+      });
+
+      const filteredPosts = posts.filter(post => post.title.includes(title))
+
+      return filteredPosts;
+    } catch (error) {
+      return error;
+    }
+  }
+
   private getPostTag = (content: string, tags: Tag[]): Tag[] => {
     return tags.reduce<Tag[]>((acc, val) => {
       if (content.toLocaleLowerCase().includes(val.name.toLocaleLowerCase())) {
