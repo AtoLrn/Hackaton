@@ -26,7 +26,7 @@
               <input type="password" id="password" name="password" class="border-b p-2 w-full">
             </div>
             <div class="flex justify-start items-center">
-              <RouterLink to="/information-list">
+              <RouterLink to="/actualites">
                 <button type="submit" class="text-white font-medium py-2 px-4 rounded-md">Connexion</button>
               </RouterLink>
             </div>
