@@ -16,27 +16,22 @@ import Navbar from './components/Navbar.vue'
 </template>
 
 <style scoped>
-
+  header {
     color: black;
     background-color: var(--color-background-soft);
   }
-
   #test2 {
     display: none;
   }
-
   @media (max-width: 768px) {
     #test {
       display: none;
     }
-
     #test2 {
       display: block;
     }
   }
-
   main {
     color: black;
   }
-
 </style>
