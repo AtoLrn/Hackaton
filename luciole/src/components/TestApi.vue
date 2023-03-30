@@ -1,5 +1,6 @@
 <template>
   <div class="greetings">
+  <h1>créer un Post</h1>
   <form @submit.prevent="submitForm">
     <label for="title">Titre :</label>
     <input type="text" id="title" v-model="form.title" required>
@@ -30,6 +31,8 @@
 
     <button type="submit">Soumettre</button>
   </form>
+
+  <h1>Recupérer les postes</h1>
   </div>
 </template>
 
@@ -46,10 +49,26 @@ export default {
       },
     };
   },
+  beforeMount() {
+    // récupérer tous les posts qui intéressent l'utilisateur
+    fetch('http://localhost:3000/post')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        data.forEach(post => {
+            const { title, content, createdAt, type, medias } = post
+
+            // Url pour pouvoir accéder aux images
+            medias.map(media => media.path = "http://localhost:3000/" + media.path)
+            console.log(medias)
+        })
+    })
+  },
   methods: {
     handleFileChange(event) {
       this.form.files = event.target.files;
     },
+    //envois du formulaire pour créer un post
     async submitForm() {
       const formData = new FormData();
       formData.append('title', this.form.title);
@@ -60,13 +79,14 @@ export default {
       for(let i=0; i < this.form.files.length; i++) {
         formData.append(`files`, this.form.files[i])
       }
-      console.log(formData)
 
       try {
         const response = await fetch('http://localhost:3000/post', {
           method: 'POST',
           body: formData
         });
+
+        console.log(response)
       } catch (error) {
         console.error(error);
       }

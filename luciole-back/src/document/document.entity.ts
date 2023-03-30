@@ -20,6 +20,9 @@ export class Document {
   @ManyToOne(() => User, (user) => user.id)
   userId: number;
 
+  @Column()
+  uploadDate: Date;
+
   @ManyToMany(() => Tag)
   @JoinTable()
   tags: Tag[];

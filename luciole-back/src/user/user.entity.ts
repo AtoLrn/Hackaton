@@ -1,5 +1,6 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Document } from 'src/document/document.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -16,4 +17,7 @@ export class User {
 
   @Column({ enum: ['admin', 'user'] })
   type: string;
+
+  @OneToMany(() => Document, (doc: Document) => doc.userId)
+  documents: Document[];
 }

@@ -1,5 +1,14 @@
 import { Media } from 'src/media/media.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn } from 'typeorm';
+import { Tag } from 'src/tag/tag.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 
 @Entity()
 export class Post {
@@ -23,4 +32,8 @@ export class Post {
 
   @OneToMany(() => Media, (media: Media) => media.post)
   medias: Media[];
+
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags: Tag[];
 }

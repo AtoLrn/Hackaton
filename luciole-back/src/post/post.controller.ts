@@ -4,17 +4,26 @@ import {
   Controller,
   Get,
   Post,
+  Request,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { v4 as uuidv4 } from 'uuid';
 import { extname } from 'path';
 import { diskStorage } from 'multer';
+import { JwtGuard } from 'src/security/local.auth';
+import { Post as P } from './post.entity';
 
 @Controller('/post')
 export class PostController {
   constructor(private readonly postService: PostService) {}
+
+  @Get()
+  async getPost(): Promise<any> {
+    return await this.postService.getAllPost();
+  }
 
   @Post()
   @UseInterceptors(
@@ -28,10 +37,10 @@ export class PostController {
       }),
     }),
   )
-  addPost(@UploadedFiles() files, @Body() body: any): Promise<string> {
+  addPost(@UploadedFiles() files, @Body() body: any): Promise<P> {
     const { title, content, type } = body;
 
-    const toPublishAt = new Date(body.toPublishAt);
+    const toPublishAt = new Date(body.toPublishAt ?? null);
 
     const newPost = {
       title,
@@ -41,5 +50,11 @@ export class PostController {
     };
 
     return this.postService.addPosts(newPost, files);
+  }
+
+  @Get('/targetted')
+  @UseGuards(JwtGuard)
+  getUserInterestingPost(@Request() { user }) {
+    return this.postService.getTargettedPost(user);
   }
 }

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,7 +19,8 @@
   --vt-c-blue: #75A3E3;
   --vt-c-blue-soft: #B5CFFB;
   --vt-c-blue-mute: #D2E0F8;
-  --vt-c-blue-dark: #3C6DB8;
+  --vt-c-blue-middle: #5D738D;
+  --vt-c-blue-dark: #355170;
 
 
   --vt-c-indigo: #2c3e50;
@@ -29,6 +34,9 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --font-prompt: 'Prompt', sans-serif;
+  --font-source-sans-pro: 'Source Sans Pro', sans-serif;
 }
 
 /* semantic color variables for this project */
@@ -40,13 +48,15 @@
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
 
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
+  --color-heading: var(--vt-c-blue-dark);
+  --color-text: var(--vt-c-blue-middle);
 
   --section-gap: 160px;
+
+  --font-title: var(--font-prompt);
+  --font-body: var(--font-source-sans-pro);
 }
-/*
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
@@ -75,9 +85,16 @@ body {
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: Roboto, sans-serif;
+  font-family: var(--font-body);
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: var(--color-heading);
+    font-weight: 600;
 }
