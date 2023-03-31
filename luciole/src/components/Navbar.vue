@@ -15,7 +15,7 @@
 
 <aside v-if="$route.path !== '/connexion'" id="logo-sidebar" class="hidden top-0 left-0 z-40 h-screen sidebar sm:block fixed border-r-2 shadow-xl" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-        <RouterLink to="/" class="flex items-center pl-2.5 mb-5 logo">
+        <RouterLink to="/" class="flex items-center mb-5 logo">
             <Logo />
         </RouterLink>
         <RouterLink to="/" class="flex items-center pl-2.5 mb-5 logo-hovered">

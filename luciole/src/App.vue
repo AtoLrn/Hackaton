@@ -11,7 +11,7 @@ import AppLayout from './components/Layout.vue'
 
 
   <AppLayout>
-    <div class="main px-16 py-4">
+    <div class="main">
       <RouterView />
     </div>
   </AppLayout>
