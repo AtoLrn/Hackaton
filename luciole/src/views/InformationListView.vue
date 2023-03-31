@@ -4,7 +4,16 @@
     <div class="grid grid-cols-12">
       <TagsList :tags="tags" />
       <div class="col-span-12 sm:col-span-4 flex items-center">
-        <SearchBar />
+      <input type="text" placeholder="Rechercher" v-model="searchWords" class="w-full px-8 py-2 rounded-3xl border border-gray-400 focus:outline-none">
+      <svg @click="search" class="absolute left-1.5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <mask id="mask0_3988_8955" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4ZM2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11Z" fill="#1F2F42"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.9429 15.9429C16.3334 15.5524 16.9666 15.5524 17.3571 15.9429L21.7071 20.2929C22.0977 20.6834 22.0977 21.3166 21.7071 21.7071C21.3166 22.0977 20.6834 22.0977 20.2929 21.7071L15.9429 17.3571C15.5524 16.9666 15.5524 16.3334 15.9429 15.9429Z" fill="#1F2F42"/>
+        </mask>
+        <g mask="url(#mask0_3988_8955)">
+          <rect width="24" height="24" fill="#5D738D"/>
+        </g>
+      </svg>
       </div>
     </div>
     <div class="flex justify-between pt-2 pb-8">
@@ -58,80 +67,8 @@ export default {
   data() {
     return {
       tags: [],
-      posts: [
-        {
-          id: 1,
-          type: "Article long",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 2,
-          type: "Article court",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 3,
-          type: "Article long",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 4,
-          type: "Article court",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 5,
-          type: "Article long",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 6,
-          type: "Article court",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 7,
-          type: "Article court",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 8,
-          type: "Article long",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-        {
-          id: 9,
-          type: "Article long",
-          title: "Télétravail, les 5 meilleurs conseils pour rester concentré",
-          source: "Sante.com",
-          date: "28 mars 2023",
-          content: "hihihi je suis un super contenu intéressant d'un article vraiment très chouette"
-        },
-      ]
+      posts: [],
+      searchWords: ""
     }
   },
   beforeMount() {
@@ -148,14 +85,47 @@ export default {
         .then(response => response.json())
         .then(dataPost => {
             dataPost.map(post => {
-                let creationDate = new Date(post.createdAt)
-                creationDate = `$creationDate.getDay()`
+                post.creationDate = this.format(new Date(post.toPublishAt))
+                post.source = "Jaji"
+                post.content = `${post.content.substring(0, 70)}...`
+                post.image = "http://localhost:3000/"+post.medias[0].path
             })
+
+            this.posts = dataPost
         })
     })
   },
   methods: {
+    format(inputDate) {
+      let date, month, year;
 
+      date = inputDate.getDate();
+      month = inputDate.getMonth() + 1;
+      year = inputDate.getFullYear();
+
+        date = date
+            .toString()
+            .padStart(2, '0');
+
+        month = month
+            .toString()
+            .padStart(2, '0');
+
+      return `${date}/${month}/${year}`;
+    },
+    async search() {
+       const res = await fetch(`http://localhost:3000/post/search?title=${this.searchWords}`) 
+       const data = await res.json()
+
+        data.map(post => {
+            post.creationDate = this.format(new Date(post.toPublishAt))
+            post.source = "Jaji"
+            post.content = `${post.content.substring(0, 70)}...`
+            post.image = "http://localhost:3000/"+post.medias[0].path
+        })
+
+        this.posts = data
+    }
   }
 }
 

@@ -217,7 +217,7 @@ export class PostService {
     return Math.exp((365 - timeDiff) / 365 + 1);
   }
 
-  async getTargettedPost(user: User): Promise<Post[]> {
+  async getTargettedPost(user: User): Promise<any> {
     const docProm = await this.documentRepository.find({
       where: {
         userId: user.id,
@@ -230,6 +230,7 @@ export class PostService {
     const postProm = await this.postsRepository.find({
       relations: {
         tags: true,
+        medias: true,
       },
     });
 
