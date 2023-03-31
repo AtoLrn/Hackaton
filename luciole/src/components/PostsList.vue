@@ -1,6 +1,6 @@
 <template>
 
-  <RouterLink to="/actualites/1"  v-for="post in posts" :key="post.id" class="post w-full overflow-hidden relative shadow-md rounded-md">
+  <RouterLink :to="`/actualites/${post.id}`"  v-for="post in posts" :key="post.id" class="post w-full overflow-hidden relative shadow-md rounded-md">
 
     <div class="content absolute inset-0 z-10 flex flex-col justify-between p-4">
 
@@ -53,7 +53,7 @@
 
     </div>
 
-    <img src="/img/post.jpg" alt="Image de la carte" class="object-cover h-full w-full">
+    <img :src="post.image" alt="Image de la carte" class="object-cover h-full w-full">
 
   </RouterLink>
 
