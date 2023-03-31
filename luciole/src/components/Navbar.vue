@@ -8,6 +8,7 @@
     import Logo from './icons/Logo.vue';
     import LogoFull from './icons/LogoFull.vue';
     import IconLogout from './icons/IconLogout.vue';
+    import IconBackoffice from './icons/IconBackoffice.vue';
     import ToggleDarkMode from './ToggleDarkMode.vue';
 
 </script>
@@ -52,6 +53,12 @@
             <RouterLink to="/parametres" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <IconSettings />
                 <span class="flex-1 ml-3 whitespace-nowrap hidden item">Paramètres</span>
+            </RouterLink>
+         </li>
+         <li>
+            <RouterLink to="/backoffice/post" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <IconBackoffice />
+                <span class="flex-1 ml-3 whitespace-nowrap hidden item">Backoffice</span>
             </RouterLink>
          </li>
       </ul>

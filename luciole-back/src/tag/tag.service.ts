@@ -38,4 +38,10 @@ export class TagService {
       ...body,
     });
   }
+
+  async deleteTag(id): Promise<any> {
+    const deletedPost = await this.tagRepository.delete(id)
+
+    return "Successfully deleted"
+  }
 }
