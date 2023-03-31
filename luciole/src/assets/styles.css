@@ -17,6 +17,7 @@
   --vt-c-blue-mute: #D2E0F8;
   --vt-c-blue-middle: #5D738D;
   --vt-c-blue-dark: #355170;
+  --vt-c-blue-darker: #1E3A54;
   --vt-c-indigo: #2c3e50;
   --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
@@ -52,8 +53,16 @@
   --border-tag-active: 1px solid var(--vt-c-blue);
   --text-color-tag-active: var(--vt-c-white);
   /* /TAGS */
+  /* INPUTS */
+  --box-shadow-input: var(--box-shadow);
+  --border-input-hover: 1px solid var(--vt-c-blue);
+  /* /INPUTS */
+  /* BUTTONS */
+  --background-color-button: var(--vt-c-blue-dark);
+  --background-color-button-hover: var(--vt-c-blue-darker);
+  /* /BUTTONS */
   --color-heading: var(--vt-c-blue-dark);
-  --color-text: var(--vt-c-blue-middle);
+  --color-text: var(--vt-c-blue-soft);
   --section-gap: 160px;
   --font-title: var(--font-prompt);
   --font-body: var(--font-source-sans-pro); }
@@ -96,8 +105,40 @@ h1 {
   color: var(--color-heading);
   font-weight: 600; }
 
-h2 {
-  font-family: var(--font-title);
-  font-size: 1.25rem;
+.custom-label {
   color: var(--color-heading);
-  font-weight: 600; }
+  font-size: 1.25rem; }
+
+.custom-input {
+  box-shadow: var(--box-shadow-input);
+  transition: border 0.2s ease-in-out; }
+
+.custom-input:hover {
+  border: var(--border-input-hover); }
+
+.custom-radio {
+  color: var(--color-heading); }
+
+.custom-input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  z-index: -1; }
+
+.custom-label-file {
+  background-color: var(--background-color-tag-hover);
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.2s ease-in-out; }
+
+.custom-label-file:hover {
+  background-color: var(--background-color-tag-active);
+  box-shadow: var(--box-shadow-wider);
+  cursor: pointer; }
+
+.custom-btn {
+  background-color: var(--background-color-button);
+  box-shadow: var(--box-shadow);
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+
+.custom-btn:hover {
+  background-color: var(--background-color-button-hover);
+  box-shadow: var(--box-shadow-wider); }
