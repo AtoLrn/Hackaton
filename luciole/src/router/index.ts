@@ -50,12 +50,7 @@ const router = createRouter({
       component: () => import('../views/PostView.vue')
     },
     {
-      path: '/backoffice',
-      name: 'backoffice-main',
-      component: () => import('../views/BackofficeView.vue')
-    },
-    {
-      path: '/backoffice/post',
+      path: '/backoffice/posts',
       name: 'backoffice-posts',
       component: () => import('../views/BackofficePostView.vue')
     },
@@ -65,9 +60,9 @@ const router = createRouter({
       component: () => import('../views/CreatePostView.vue')
     },
     {
-      path: '/backoffice/tag',
+      path: '/backoffice/tags',
       name: 'backoffice-tag',
-      component: () => import('../views/TagView.vue')
+      component: () => import('../views/TagsListView.vue')
     },
   ]
 })

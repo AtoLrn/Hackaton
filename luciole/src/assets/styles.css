@@ -142,3 +142,25 @@ h1 {
 .custom-btn:hover {
   background-color: var(--background-color-button-hover);
   box-shadow: var(--box-shadow-wider); }
+
+#editor-js,
+#calendar {
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.2s ease-in-out, border 0.2s ease-in-out; }
+
+#calendar:hover,
+#editor-js:hover {
+  box-shadow: var(--box-shadow-wider); }
+
+.custom-table {
+  color: var(--color-heading); }
+
+.custom-table thead {
+  background-color: #e6eef8; }
+
+.custom-table-btn {
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.2s ease-in-out; }
+
+.custom-table-btn:hover {
+  box-shadow: var(--box-shadow-wider); }
