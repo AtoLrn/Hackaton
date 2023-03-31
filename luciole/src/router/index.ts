@@ -64,6 +64,11 @@ const router = createRouter({
       name: 'backoffice-posts-create',
       component: () => import('../views/CreatePostView.vue')
     },
+    {
+      path: '/backoffice/tag',
+      name: 'backoffice-tag',
+      component: () => import('../views/TagView.vue')
+    },
   ]
 })
 

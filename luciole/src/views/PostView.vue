@@ -32,7 +32,7 @@
   </form>
 
     <li v-for="media in form.medias">
-        <p>Lien du media : {{ media.path }}</p>
+        <img :src="`http://localhost:3000/${media.path}`" />
         <button @click="removeMedia(media.id)">Supprimer</button>
     </li>
   </div>
