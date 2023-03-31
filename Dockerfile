@@ -20,7 +20,7 @@ RUN npm i
 
 COPY luciole-back/ .
 COPY luciole-back/.env ./.env
-COPY --from=build-front /build/dist ./public
+COPY --from=build-front /build/dist/ ./public
 
 RUN npm run build
 
@@ -34,5 +34,7 @@ RUN npm i
 COPY --from=build-back /build/dist/ ./dist
 COPY luciole-back/.env ./.env
 COPY luciole-back/tsconfig.json .
+COPY --from=build-front /build/dist/ ./public
+
 
 CMD [ "npm", "run", "start" ] 

@@ -26,7 +26,9 @@ import { MediaModule } from './media/media.module';
       serveRoot: '/uploads/',
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+      //      const path = join(process.cwd(), files[0].path);
+
+      rootPath: join(process.cwd(), 'public'),
       exclude: ['/api*'],
     }),
     ConfigModule.forRoot(),
