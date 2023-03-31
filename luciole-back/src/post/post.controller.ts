@@ -31,7 +31,7 @@ export class PostController {
 
   @Get('/search')
   getPostBySearch(@Query('title') title) {
-    return this.postService.searchPost(title)
+    return this.postService.searchPost(title);
   }
 
   @Get('/targetted')
@@ -42,7 +42,7 @@ export class PostController {
 
   @Get('/:id')
   getPostById(@Param('id') id) {
-    return this.postService.getPost(id)
+    return this.postService.getPost(id);
   }
 
   @Post()
@@ -101,7 +101,6 @@ export class PostController {
 
   @Delete('/:id')
   deletePost(@Param('id') id) {
-    return this.postService.deletePost(id)
+    return this.postService.deletePost(id);
   }
-
 }

@@ -25,6 +25,10 @@ import { MediaModule } from './media/media.module';
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads/',
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      exclude: ['/api*'],
+    }),
     ConfigModule.forRoot(),
   ],
   controllers: [AppController],
