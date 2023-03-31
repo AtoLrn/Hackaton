@@ -30,3 +30,5 @@ Se rendre sur AWS:
 - Copier le **.env.exemple** en un **.env** dans luciole-back
 - Créer une **accessKey** pour cet Users et remplir les champs du **.env**
 - Vous pouvez ensuite faire un **docker compose up -d** à la racine du projet et aller sur http://localhost:3000/
+
+![Screenshot_2023-03-31_16-21-52](https://user-images.githubusercontent.com/26856078/229147130-64d043d2-f649-492e-9e31-2a44aa18f7a2.png)
