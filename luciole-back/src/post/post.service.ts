@@ -13,6 +13,7 @@ import {
   StartTranscriptionJobCommand,
   TranscribeClient,
 } from '@aws-sdk/client-transcribe';
+import * as fs from 'fs';
 
 @Injectable()
 export class PostService {
@@ -36,6 +37,20 @@ export class PostService {
       });
 
       return posts;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async searchPost(title): Promise<any> {
+    try {
+      const posts = await this.postsRepository.find({
+        relations: { medias: true },
+      });
+
+      const filteredPosts = posts.filter(post => post.title.includes(title))
+
+      return filteredPosts;
     } catch (error) {
       return error;
     }
@@ -135,6 +150,67 @@ export class PostService {
     }
 
     return newPost;
+  }
+
+  async updatePost(updatedPost: any, files: any, id: any) {
+    const post = await this.postsRepository.find({
+        where: {id: id},
+    });
+
+    post[0].title = updatedPost.title
+    post[0].content = updatedPost.content
+    post[0].toPublishAt = updatedPost.toPublishAt
+    post[0].type = updatedPost.type
+
+    await files.forEach(async (file) => {
+        await this.mediaRepository.save({
+            path: file.path,
+            post: post[0].id
+        })
+    })
+
+    await this.postsRepository.update(id, post[0]);
+
+    const updatedFiles = await this.mediaRepository.find({
+        where: {post: post[0].id}
+    })
+    console.log(updatedFiles)
+
+    return {
+        post: post[0],
+        files: updatedFiles
+    };
+  }
+
+  async getPost(id) {
+    const post = await this.postsRepository.find({
+        where: {id: id},
+        relations: {medias: true}
+    });
+
+    return post[0]
+  }
+
+  async deletePost(id): Promise<any> {
+    const post = await this.postsRepository.find({
+        where: {id: id},
+        relations: {medias: true}
+    });
+
+    post[0].medias.forEach(media => {
+        const filePath = `${__dirname}/../../${media.path}`
+        fs.exists(filePath, exist => {
+            if(exist) {
+                fs.unlink(filePath, err => {
+                    if (err) throw err
+                })
+            }
+        })
+    })
+
+    const deletedPost = await this.postsRepository.delete(id)
+
+    return "Successfully deleted"
   }
 
   private calcTimeModifier(timeDiff: number) {

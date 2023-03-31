@@ -127,6 +127,12 @@ h1 {
     font-weight: 600;
 }
 
+h2 {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    color: var(--color-heading);
+    font-weight: 600;
+}
 
 
 

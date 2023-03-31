@@ -2,8 +2,12 @@ import { PostService } from './post.service';
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
   Post,
+  Put,
+  Query,
   Request,
   UploadedFiles,
   UseGuards,
@@ -23,6 +27,16 @@ export class PostController {
   @Get()
   async getPost(): Promise<any> {
     return await this.postService.getAllPost();
+  }
+
+  @Get('/search')
+  getPostBySearch(@Query('title') title) {
+    return this.postService.searchPost(title)
+  }
+
+  @Get('/:id')
+  getPostById(@Param('id') id) {
+    return this.postService.getPost(id)
   }
 
   @Post()
@@ -50,6 +64,38 @@ export class PostController {
     };
 
     return this.postService.addPosts(newPost, files);
+  }
+
+  @Put('/:id')
+  @UseInterceptors(
+    FilesInterceptor('files', 10, {
+      storage: diskStorage({
+        destination: './uploads/post',
+        filename: (req, file, cb) => {
+          const fileName = uuidv4();
+          cb(null, `${fileName}${extname(file.originalname)}`);
+        },
+      }),
+    }),
+  )
+  async updatePost(@UploadedFiles() files, @Body() body: any, @Param('id') id) {
+    const { title, content, type } = body;
+
+    const toPublishAt = new Date(body.toPublishAt ?? null);
+
+    const newPost = {
+      title,
+      content,
+      toPublishAt,
+      type,
+    };
+
+    return await this.postService.updatePost(newPost, files, id);
+  }
+
+  @Delete('/:id')
+  deletePost(@Param('id') id) {
+    return this.postService.deletePost(id)
   }
 
   @Get('/targetted')

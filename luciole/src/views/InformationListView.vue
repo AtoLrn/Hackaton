@@ -1,6 +1,6 @@
 <template>
 
-  <div class="sm:px-2 md:px-8 lg:px-16">
+  <div class="py-4 sm:px-2 md:px-8 lg:px-32">
     <div class="grid grid-cols-12">
       <TagsList :tags="tags" />
       <div class="col-span-12 sm:col-span-4 flex items-center">

@@ -4,7 +4,7 @@
     <div class="w-2/3 flex justify-center items-center">
       <img src="src/assets/img/scene_employeur.svg" alt="Illustration page de connexion">
     </div>
-    <div class="w-1/3 bg-gray-100 flex flex-col justify-center items-center">
+    <div class="w-1/3 bg-gray-200 flex flex-col justify-center items-center">
 
         <div class="w-4/12 flex justify-center items-center">
           <img src="src/assets/img/jaji_logo.svg" alt="Illustration page de connexion">
@@ -26,7 +26,7 @@
               <input type="password" id="password" name="password" class="border-b p-2 w-full">
             </div>
             <div class="flex justify-start items-center">
-              <RouterLink to="/actualites">
+              <RouterLink to="/">
                 <button type="submit" class="text-white font-medium py-2 px-4 rounded-md">Connexion</button>
               </RouterLink>
             </div>

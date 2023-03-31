@@ -15,6 +15,16 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
+      path: '/couverture-sante',
+      name: 'health-insurance',
+      component: () => import('../views/HealthInsuranceView.vue')
+    },
+    {
+      path: '/soins',
+      name: 'care',
+      component: () => import('../views/CareView.vue')
+    },
+    {
       path: '/actualites',
       name: 'information-list',
       component: () => import('../views/InformationListView.vue')
@@ -25,9 +35,34 @@ const router = createRouter({
       component: () => import('../views/InformationView.vue')
     },
     {
+      path: '/parametres',
+      name: 'settings',
+      component: () => import('../views/SettingsView.vue')
+    },
+    {
       path: '/profil',
       name: 'profile',
       component: () => import('../views/ProfileView.vue')
+    },
+    {
+      path: '/backoffice/post/:id',
+      name: 'post',
+      component: () => import('../views/PostView.vue')
+    },
+    {
+      path: '/backoffice',
+      name: 'backoffice-main',
+      component: () => import('../views/BackofficeView.vue')
+    },
+    {
+      path: '/backoffice/post',
+      name: 'backoffice-posts',
+      component: () => import('../views/BackofficePostView.vue')
+    },
+    {
+      path: '/backoffice/post/create',
+      name: 'backoffice-posts-create',
+      component: () => import('../views/CreatePostView.vue')
     },
   ]
 })

@@ -6,7 +6,7 @@ export class Media {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Post, (post: Post) => post.medias)
+  @ManyToOne(() => Post, (post: Post) => post.medias, {onDelete: 'CASCADE'})
   post: number;
 
   @Column()
