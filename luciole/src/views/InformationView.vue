@@ -27,7 +27,7 @@ export default {
   beforeMount() {
     const id = this.$route.params.id
 
-    fetch(`http://localhost:3000/post/${id}`)
+    fetch(`http://localhost:3000/api/post/${id}`)
     .then(res => res.json())
     .then(data => {
         const {title, content, type, toPublishAt, medias} = data

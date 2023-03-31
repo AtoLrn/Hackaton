@@ -72,12 +72,12 @@ export default {
     }
   },
   beforeMount() {
-    fetch("http://localhost:3000/tag")
+    fetch("http://localhost:3000/api/tag")
     .then(res => res.json())
     .then(data => {
         this.tags = data.tags
 
-        fetch("http://localhost:3000/post/targetted",{
+        fetch("http://localhost:3000/api/post/targetted",{
             headers: {
                 "LUCIOLE-USER-ID": JSON.parse(localStorage.getItem("userId") as string)
             }
@@ -114,7 +114,7 @@ export default {
       return `${date}/${month}/${year}`;
     },
     async search() {
-       const res = await fetch(`http://localhost:3000/post/search?title=${this.searchWords}`) 
+       const res = await fetch(`http://localhost:3000/api/post/search?title=${this.searchWords}`) 
        const data = await res.json()
 
         data.map(post => {

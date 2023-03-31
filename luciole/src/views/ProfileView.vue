@@ -38,7 +38,7 @@ export default {
       formData.append('file', this.form.type);
 
       try {
-        const response = await fetch('http://localhost:3000/document', {
+        const response = await fetch('http://localhost:3000/api/document', {
           method: 'POST',
           body: formData,
           headers: {

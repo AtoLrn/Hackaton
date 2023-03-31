@@ -18,7 +18,7 @@ export default {
     }
   },
   beforeMount() {
-    fetch("http://localhost:3000/post")
+    fetch("http://localhost:3000/api/post")
     .then(res => res.json())
     .then(data => {
         data.forEach(post => {
@@ -31,7 +31,7 @@ export default {
   methods: {
     removePost(id) {
         if(confirm("Voulez vous supprimer ce post ?")) {
-            fetch(`http://localhost:3000/post/${id}`, {
+            fetch(`http://localhost:3000/api/post/${id}`, {
                 method: "DELETE"
             })
             .then(_ => {

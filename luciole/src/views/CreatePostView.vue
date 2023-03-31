@@ -85,7 +85,7 @@ export default {
     };
   },
   beforeMount() {
-    fetch('http://localhost:3000/post')
+    fetch('http://localhost:3000/api/post')
     .then(res => res.json())
     .then(data => {
         data.forEach(post => {
@@ -114,7 +114,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/post', {
+        const response = await fetch('http://localhost:3000/api/post', {
           method: 'POST',
           body: formData
         });
