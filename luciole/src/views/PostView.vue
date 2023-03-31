@@ -55,7 +55,7 @@ export default {
   beforeMount() {
     const id = this.$route.params.id
 
-    fetch(`http://localhost:3000/post/${id}`)
+    fetch(`http://localhost:3000/api/post/${id}`)
     .then(res => res.json())
     .then(data => {
         const {title, content, type, toPublishAt, medias} = data
@@ -75,7 +75,7 @@ export default {
       this.form.files = event.target.files;
     },
     async removeMedia(id) {
-        fetch(`http://localhost:3000/media/${id}`, {
+        fetch(`http://localhost:3000/api/media/${id}`, {
             method: "DELETE"
         })
         .then(_ => {
@@ -97,7 +97,7 @@ export default {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/post/${this.$route.params.id}`, {
+        const response = await fetch(`http://localhost:3000/api/post/${this.$route.params.id}`, {
           method: 'PUT',
           body: formData
         });
