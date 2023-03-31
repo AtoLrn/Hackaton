@@ -83,6 +83,8 @@ export default {
 
         if (response.ok) {
           // Rediriger l'utilisateur vers la page d'accueil
+          const data = await response.json()
+          localStorage.setItem("userId", JSON.stringify(data.id.id))
           router.push('/');
         }
 

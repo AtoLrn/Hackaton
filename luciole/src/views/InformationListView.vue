@@ -140,10 +140,17 @@ export default {
     .then(data => {
         this.tags = data.tags
 
-        fetch("http://localhost:3000/post/targetted")
+        fetch("http://localhost:3000/post/targetted",{
+            headers: {
+                "LUCIOLE-USER-ID": JSON.parse(localStorage.getItem("userId") as string)
+            }
+        })
         .then(response => response.json())
         .then(dataPost => {
-            console.log(dataPost)
+            dataPost.map(post => {
+                let creationDate = new Date(post.createdAt)
+                creationDate = `$creationDate.getDay()`
+            })
         })
     })
   },
