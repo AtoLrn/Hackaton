@@ -57,52 +57,7 @@ export default {
 
   data() {
     return {
-      tags: [
-        {
-          id: 1,
-          name: "Pour vous"
-        },
-        {
-          id: 2,
-          name: "Tag 1"
-        },
-        {
-          id: 3,
-          name: "Tag 2"
-        },
-        {
-          id: 4,
-          name: "Tag 3"
-        },
-        {
-          id: 5,
-          name: "Tag 4"
-        },
-        {
-          id: 6,
-          name: "Tag 5"
-        },
-        {
-          id: 7,
-          name: "Tag 6"
-        },
-        {
-          id: 8,
-          name: "Tag 7"
-        },
-        {
-          id: 9,
-          name: "Tag 8"
-        },
-        {
-          id: 10,
-          name: "Tag 9"
-        },
-        {
-          id: 11,
-          name: "Tag 10"
-        },
-      ],
+      tags: [],
       posts: [
         {
           id: 1,
@@ -178,8 +133,30 @@ export default {
         },
       ]
     }
-  }
+  },
+  beforeMount() {
+    fetch("http://localhost:3000/tag")
+    .then(res => res.json())
+    .then(data => {
+        this.tags = data.tags
 
+        fetch("http://localhost:3000/post/targetted",{
+            headers: {
+                "LUCIOLE-USER-ID": JSON.parse(localStorage.getItem("userId") as string)
+            }
+        })
+        .then(response => response.json())
+        .then(dataPost => {
+            dataPost.map(post => {
+                let creationDate = new Date(post.createdAt)
+                creationDate = `$creationDate.getDay()`
+            })
+        })
+    })
+  },
+  methods: {
+
+  }
 }
 
 </script>

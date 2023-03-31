@@ -34,6 +34,12 @@ export class PostController {
     return this.postService.searchPost(title)
   }
 
+  @Get('/targetted')
+  @UseGuards(JwtGuard)
+  getUserInterestingPost(@Request() { user }) {
+    return this.postService.getTargettedPost(user);
+  }
+
   @Get('/:id')
   getPostById(@Param('id') id) {
     return this.postService.getPost(id)
@@ -98,9 +104,4 @@ export class PostController {
     return this.postService.deletePost(id)
   }
 
-  @Get('/targetted')
-  @UseGuards(JwtGuard)
-  getUserInterestingPost(@Request() { user }) {
-    return this.postService.getTargettedPost(user);
-  }
 }
