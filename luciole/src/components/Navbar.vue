@@ -9,6 +9,7 @@
     import LogoFull from './icons/LogoFull.vue';
     import IconLogout from './icons/IconLogout.vue';
     import ToggleDarkMode from './ToggleDarkMode.vue';
+
 </script>
 
 <template>

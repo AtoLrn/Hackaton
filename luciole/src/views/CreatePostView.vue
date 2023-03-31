@@ -78,8 +78,8 @@ export default {
       form: {
         title: '',
         content: '',
-        toPublishAt: new Date(),
-        files: null,
+        toPublishAt: new Date() as any,
+        files: null as any,
         type: 'post',
       },
     };
@@ -88,13 +88,11 @@ export default {
     fetch('http://localhost:3000/post')
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         data.forEach(post => {
             const { title, content, createdAt, type, medias } = post
 
             // Url pour pouvoir accéder aux images
             medias.map(media => media.path = "http://localhost:3000/" + media.path)
-            console.log(medias)
         })
     })
   },

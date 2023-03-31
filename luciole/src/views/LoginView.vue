@@ -2,12 +2,12 @@
 
   <div class="h-screen flex">
     <div class="w-2/3 flex justify-center items-center">
-      <img src="src/assets/img/scene_employeur.svg" alt="Illustration page de connexion">
+      <img src="/img/scene_employeur.svg" alt="Illustration page de connexion">
     </div>
     <div class="w-1/3 bg-gray-200 flex flex-col justify-center items-center">
 
         <div class="w-4/12 flex justify-center items-center">
-          <img src="src/assets/img/jaji_logo.svg" alt="Illustration page de connexion">
+          <img src="/img/jaji_logo.svg" alt="Illustration page de connexion">
         </div>
         <div class="flex flex-col w-80 items-center">
           <div class="py-8">

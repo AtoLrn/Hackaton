@@ -45,10 +45,10 @@ export default {
       form: {
         title: '',
         content: '',
-        toPublishAt: '',
-        files: null,
+        toPublishAt: '' as any,
+        files: null as any,
         type: 'post',
-        medias: [],
+        medias: [] as any,
       },
     };
   },

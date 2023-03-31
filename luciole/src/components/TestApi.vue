@@ -43,8 +43,8 @@ export default {
       form: {
         title: '',
         content: '',
-        toPublishAt: new Date(),
-        files: null,
+        toPublishAt: new Date() as any,
+        files: null as any,
         type: 'post',
       },
     };
@@ -55,18 +55,18 @@ export default {
     .then(res => res.json())
     .then(data => {
         console.log(data)
-        data.forEach(post => {
+        data.forEach((post: any) => {
             const { title, content, createdAt, type, medias } = post
 
             // Url pour pouvoir accéder aux images
-            medias.map(media => media.path = "http://localhost:3000/" + media.path)
+            medias.map((media: any) => media.path = "http://localhost:3000/" + media.path)
             console.log(medias)
         })
     })
   },
   methods: {
     handleFileChange(event) {
-      this.form.files = event.target.files;
+      this.form.files = event.target.files as any;
     },
     //envois du formulaire pour créer un post
     async submitForm() {

@@ -53,19 +53,19 @@
 
     </div>
 
-    <img src="src/assets/post.jpg" alt="Image de la carte" class="object-cover h-full w-full">
+    <img src="/img/post.jpg" alt="Image de la carte" class="object-cover h-full w-full">
 
   </RouterLink>
 
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     posts: {
       type: Array,
       required: true
-    },
+    } as any,
   }
 }
 </script>

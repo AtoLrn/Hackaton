@@ -41,11 +41,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import PostsList from "@/components/PostsList.vue";
-import TagsList from "@/components/TagsList.vue";
-import SearchBar from "@/components/SearchBar.vue";
+import PostsList from "./../components/PostsList.vue";
+import TagsList from "./../components/TagsList.vue";
+import SearchBar from "./../components/SearchBar.vue";
 
 export default {
 

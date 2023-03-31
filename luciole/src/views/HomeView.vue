@@ -91,7 +91,7 @@
 
 </template>
 
-<script>
+<script lang="ts">
 
 import TestApi from '@/components/TestApi.vue'
 export default {
@@ -103,11 +103,12 @@ export default {
 <style lang="scss" scoped>
 
   #content {
-    background-image: url('src/assets/img/background.png');
     background-position: top;
     background-repeat: no-repeat;
     color: var(--color-heading);
     background-size: contain;
+    background-image: url('/img/background.png');
+
 
     #card-insurance-div {
 
