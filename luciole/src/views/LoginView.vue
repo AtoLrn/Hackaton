@@ -16,19 +16,17 @@
           <div class="py-2 text-base text-center">
             <p>Renseignez vos identifiants pour vous connecter</p>
           </div>
-          <form class="w-full">
+          <form class="w-full" @submit.prevent="submitForm">
             <div class="mb-4">
               <label for="email" class="text-xs">Adresse e-mail</label>
-              <input type="email" id="email" name="email" class="border border-slate-200 rounded p-2 w-full">
+              <input type="email" id="email" name="email" class="border border-slate-200 rounded p-2 w-full" v-model="email">
             </div>
             <div class="mb-4">
               <label for="password" class="text-xs">Mot de passe</label>
-              <input type="password" id="password" name="password" class="border-b p-2 w-full">
+              <input type="password" id="password" name="password" class="border-b p-2 w-full" v-model="password">
             </div>
             <div class="flex justify-start items-center">
-              <RouterLink to="/">
                 <button type="submit" class="text-white font-medium py-2 px-4 rounded-md">Connexion</button>
-              </RouterLink>
             </div>
           </form>
         </div>
@@ -58,3 +56,46 @@
   }
 
 </style>
+
+<script lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+export default {
+  setup() {
+    const email = ref('');
+    const password = ref('');
+
+    const router = useRouter();
+
+    const submitForm = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/user/user/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            login: email.value,
+            password: password.value,
+          }),
+        });
+
+        if (response.ok) {
+          // Rediriger l'utilisateur vers la page d'accueil
+          router.push('/');
+        }
+
+      } catch (error: any) {
+        console.error(error);
+      }
+    };
+
+    return {
+      email,
+      password,
+      submitForm,
+    };
+  },
+};
+</script>
