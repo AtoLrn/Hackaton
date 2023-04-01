@@ -74,6 +74,7 @@
         </div>
       </div>
     </form>
+    <h2>Liste des médias associés au post :</h2>
     <div class="medias">
         <div v-for="media in form.medias">
             <img :src="`http://localhost:3000/${media.path}`" />
@@ -83,10 +84,42 @@
   </div>
 </template>
 <style scoped>
-  @import 'https://cdn.quilljs.com/1.3.6/quill.snow.css';
-  #editor-js {
+    @import 'https://cdn.quilljs.com/1.3.6/quill.snow.css';
+    #editor-js {
     height: 32vh;
-  }
+    }
+    .medias {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .medias > div {
+      margin: 10px;
+    }
+
+    .medias img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      width: 200px;
+    }
+
+    .medias button {
+      margin-top: 5px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .medias button:hover {
+      background-color: #d32f2f;
+    }
 </style>
 <script lang="ts">
 import Quill from 'quill'
@@ -126,7 +159,7 @@ export default {
         const {title, content, type, toPublishAt, medias} = data
 
         this.form.title = title
-        this.form.content = content
+        this.form.quill.setText(content)
         this.form.type = type
 
         const dateBuffer = new Date(toPublishAt)
@@ -172,7 +205,7 @@ export default {
     async submitForm() {
       const formData = new FormData();
       formData.append('title', this.form.title);
-      formData.append('content', this.form.content);
+      formData.append('content', this.form.quill.getText());
       formData.append('toPublishAt', this.form.toPublishAt);
       formData.append('type', this.form.type);
 
