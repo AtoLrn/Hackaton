@@ -85,7 +85,7 @@ export default {
     };
   },
   beforeMount() {
-    fetch("http://localhost:3000/tag")
+    fetch("http://localhost:3000/api/tag")
     .then(res => res.json())
     .then(data => {
         this.tags = data.tags
@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     async removeTag(id) {
-        fetch(`http://localhost:3000/tag/${id}`, {
+        fetch(`http://localhost:3000/api/tag/${id}`, {
             method: "DELETE"
         })
         .then(_ => {
@@ -110,7 +110,7 @@ export default {
         formData.append('endDate', this.form.endDate);
         formData.append('weeks', null);
 
-        const response = await fetch(`http://localhost:3000/tag`, {
+        const response = await fetch(`http://localhost:3000/api/tag`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

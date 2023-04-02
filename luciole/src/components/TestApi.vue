@@ -51,7 +51,7 @@ export default {
   },
   beforeMount() {
     // récupérer tous les posts qui intéressent l'utilisateur
-    fetch('http://localhost:3000/post')
+    fetch('http://localhost:3000/api/post')
     .then(res => res.json())
     .then(data => {
         console.log(data)
@@ -81,7 +81,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/post', {
+        const response = await fetch('http://localhost:3000/api/post', {
           method: 'POST',
           body: formData
         });
