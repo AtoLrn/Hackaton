@@ -2,10 +2,10 @@
 
   <div id="content">
 
-    <div class="flex flex-wrap items-center justify-center h-screen gap-32">
-      <div class="flex flex-row">
-        <div id="card-insurance-div">
-          <h1 class="mb-12">Bonjour (Elena)</h1>
+    <div class="flex flex-wrap items-center justify-center h-screen md:gap-24 lg:gap-60">
+      <div>
+        <div id="card-insurance-div" class="flex flex-col justify-center object-center">
+          <h1 class="mb-12">Bonjour</h1>
           <h2 class="mb-1">Voici votre carte de tiers payant !</h2>
           <p class="mb-2">
             Évitez d'avancer les frais.<br>
