@@ -27,7 +27,7 @@
 
     <div class="mb-8">
       <label for="title" class="custom-label block font-bold mb-2">Titre</label>
-      <input id="title" type="text" class="custom-input w-4/12 border rounded-lg py-2 px-3 text-gray-700 leading-tight rounded-sm focus:outline-none focus:shadow-outline" placeholder="Footing, les bons conseils pour éviter les blessures">
+      <input id="title" type="text" class="custom-input w-4/12 border rounded-lg py-2 px-3 text-gray-700 leading-tight rounded-sm focus:outline-none focus:shadow-outline" placeholder="Footing, les bons conseils pour éviter les blessures" v-model="form.title" required>
     </div>
 
     <div class="mb-8">

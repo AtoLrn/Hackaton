@@ -4,16 +4,23 @@
     <h1>Tags</h1>
 
     <form @submit.prevent="submitForm">
-        <label for="tag">Tag :</label>
-        <input type="text" id="tag" v-model="form.name" required>
 
-        <label for="date">Date de début:</label>
-        <input type="date" id="date" v-model="form.startDate">
+        <div class="mb-8">
+          <label for="tag" class="custom-label block font-bold mb-2">Tag:</label>
+          <input type="text" id="tag" v-model="form.name" required class="custom-input w-4/12 border rounded-lg py-2 px-3 text-gray-700 leading-tight rounded-sm focus:outline-none focus:shadow-outline" placeholder="Footing, les bons conseils pour éviter les blessures">
+        </div>
 
-        <label for="enddate">Date de fin:</label>
-        <input type="date" id="enddate" v-model="form.endDate">
+        <div class="mb-8">
+          <label for="date" class="custom-label block font-bold mb-2">Date de fin:</label>
+          <input type="date" id="date" v-model="form.startDate" class="custom-input w-4/12 border py-2 px-3 text-gray-700 leading-tight rounded-sm focus:outline-none focus:shadow-outline" open="true">
+        </div>
 
-        <button type="submit">Soumettre</button>
+        <div class="mb-8">
+          <label for="date" class="custom-label block font-bold mb-2">Date de fin:</label>
+          <input type="date" id="enddate" v-model="form.endDate" class="custom-input w-4/12 border py-2 px-3 text-gray-700 leading-tight rounded-sm focus:outline-none focus:shadow-outline" open="true">
+        </div>
+
+        <button type="submit" class="custom-btn font-bold text-white rounded-sm py-2 px-8">Soumettre</button>
     </form>
     <h3 class="text-2xl font-bold my-8">Liste des tags</h3>
         <div id="tags-list" class="col-span-12 sm:col-span-8 overflow-x-scroll">
